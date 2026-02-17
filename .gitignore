@@ -1,0 +1,15 @@
+# Node
+node_modules/
+build/
+
+# Spring Boot
+target/
+*.log
+*.class
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
