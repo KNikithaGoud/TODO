@@ -6,6 +6,8 @@ import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+
 @RestController
 @RequestMapping("/api/todos")
 @CrossOrigin
@@ -18,6 +20,7 @@ public class TodoController {
     }
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public Todo create(@Valid @RequestBody Todo todo) {
         return service.create(todo);
     }
@@ -28,11 +31,12 @@ public class TodoController {
     }
 
     @PutMapping("/{id}")
-    public Todo update(@PathVariable Long id, @RequestBody Todo todo) {
+    public Todo update(@PathVariable Long id, @Valid @RequestBody Todo todo) {
         return service.update(id, todo);
     }
 
     @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) {
         service.delete(id);
     }
